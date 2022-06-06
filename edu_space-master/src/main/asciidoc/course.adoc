@@ -1,0 +1,57 @@
+==== Get one course by id
+===== Curl example
+include::{snippets}/course/get-by-id/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/course/get-by-id/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/course/get-by-id/path-parameters.adoc[]
+===== HTTP Response
+include::{snippets}/course/get-by-id/http-response.adoc[]
+===== Response fields
+include::{snippets}/course/get-by-id/response-fields.adoc[]
+
+==== Get all courses
+===== Curl example
+include::{snippets}/course/get-all/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/course/get-all/http-request.adoc[]
+===== Response fields
+include::{snippets}/course/get-all/response-fields.adoc[]
+===== HTTP Response
+include::{snippets}/course/get-all/http-response.adoc[]
+
+==== Create new course
+===== Curl example
+include::{snippets}/course/create/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/course/create/http-request.adoc[]
+===== Request fields
+include::{snippets}/course/create/request-fields.adoc[]
+===== HTTP Response
+include::{snippets}/course/create/http-response.adoc[]
+===== Response fields
+include::{snippets}/course/create/response-fields.adoc[]
+
+==== Update course
+===== Curl example
+include::{snippets}/course/update/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/course/update/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/course/update/path-parameters.adoc[]
+===== Request fields
+include::{snippets}/course/update/request-fields.adoc[]
+===== HTTP Response
+include::{snippets}/course/update/http-response.adoc[]
+===== Response fields
+include::{snippets}/course/update/response-fields.adoc[]
+
+==== Delete course
+===== Curl example
+include::{snippets}/course/remove/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/course/remove/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/course/remove/path-parameters.adoc[]
+===== HTTP Response
+include::{snippets}/course/remove/http-response.adoc[]

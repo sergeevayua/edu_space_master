@@ -1,0 +1,18 @@
+form {
+  display: flex;
+  align-items: center;
+}
+
+.languages-switcher {
+  width: 90px;
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 5px;
+}
+
+::ng-deep.mat-option-text {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}

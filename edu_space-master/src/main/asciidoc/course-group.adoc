@@ -1,0 +1,57 @@
+==== Get one course group by id
+===== Curl example
+include::{snippets}/course-group/get-by-id/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/course-group/get-by-id/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/course-group/get-by-id/path-parameters.adoc[]
+===== HTTP Response
+include::{snippets}/course-group/get-by-id/http-response.adoc[]
+===== Response fields
+include::{snippets}/course-group/get-by-id/response-fields.adoc[]
+
+==== Get all course groups
+===== Curl example
+include::{snippets}/course-group/get-all/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/course-group/get-all/http-request.adoc[]
+===== Response fields
+include::{snippets}/course-group/get-all/response-fields.adoc[]
+===== HTTP Response
+include::{snippets}/course-group/get-all/http-response.adoc[]
+
+==== Create new course group
+===== Curl example
+include::{snippets}/course-group/create/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/course-group/create/http-request.adoc[]
+===== Request fields
+include::{snippets}/course-group/create/request-fields.adoc[]
+===== HTTP Response
+include::{snippets}/course-group/create/http-response.adoc[]
+===== Response fields
+include::{snippets}/course-group/create/response-fields.adoc[]
+
+==== Update course group
+===== Curl example
+include::{snippets}/course-group/update/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/course-group/update/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/course-group/update/path-parameters.adoc[]
+===== Request fields
+include::{snippets}/course-group/update/request-fields.adoc[]
+===== HTTP Response
+include::{snippets}/course-group/update/http-response.adoc[]
+===== Response fields
+include::{snippets}/course-group/update/response-fields.adoc[]
+
+==== Delete course group
+===== Curl example
+include::{snippets}/course-group/remove/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/course-group/remove/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/course-group/remove/path-parameters.adoc[]
+===== HTTP Response
+include::{snippets}/course-group/remove/http-response.adoc[]

@@ -1,0 +1,21 @@
+==== Get one professional by id
+===== Curl example
+include::{snippets}/professional/get-by-id/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/professional/get-by-id/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/professional/get-by-id/path-parameters.adoc[]
+===== HTTP Response
+include::{snippets}/professional/get-by-id/http-response.adoc[]
+===== Response fields
+include::{snippets}/professional/get-by-id/response-fields.adoc[]
+
+==== Get all professionals
+===== Curl example
+include::{snippets}/professional/get-all/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/professional/get-all/http-request.adoc[]
+===== Response fields
+include::{snippets}/professional/get-all/response-fields.adoc[]
+===== HTTP Response
+include::{snippets}/professional/get-all/http-response.adoc[]

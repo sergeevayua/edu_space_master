@@ -1,0 +1,34 @@
+== API
+
+=== User
+include::user.adoc[]
+
+=== Role
+include::role.adoc[]
+
+=== Reset password
+include::role.adoc[]
+
+=== Registration
+include::registration.adoc[]
+
+=== Course group
+include::course-group.adoc[]
+
+=== Module
+include::module.adoc[]
+
+=== Course
+include::course.adoc[]
+
+=== Chapter
+include::chapter.adoc[]
+
+=== Exercise
+include::exercise.adoc[]
+
+=== Professional
+include::professional.adoc[]
+
+
+

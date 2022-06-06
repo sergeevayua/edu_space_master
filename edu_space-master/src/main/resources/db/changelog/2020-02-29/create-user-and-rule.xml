@@ -1,0 +1,127 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="agerus" id="1">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="user">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="phone" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="login" type="VARCHAR(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age" type="INT(20)"/>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="is_enabled" type="BIT(1)"/>
+            <column name="modification_time" type="DATETIME"/>
+
+        </createTable>
+        <modifySql dbms="mysql">
+            <append value="DEFAULT CHARSET=utf8"/>
+        </modifySql>
+    </changeSet>
+
+    <changeSet author="agerus" id="2">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="role"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="role">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="role_name" type="VARCHAR(255)"/>
+            <column name="modification_time" type="DATETIME"/>
+
+        </createTable>
+        <modifySql dbms="mysql">
+            <append value="DEFAULT CHARSET=utf8"/>
+        </modifySql>
+    </changeSet>
+
+    <changeSet id="3" author="agerus">
+        <insert tableName="role">
+            <column name="id" valueNumeric="1"/>
+            <column name="role_name" value="SUPERADMIN"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" valueNumeric="2"/>
+            <column name="role_name" value="TEACHER"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" valueNumeric="3"/>
+            <column name="role_name" value="USER"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="4" author="agerus">
+        <insert tableName="user">
+            <column name="id" valueNumeric="1"/>
+            <column name="first_name" value="Супер"/>
+            <column name="last_name" value="Администратор"/>
+            <column name="phone" value="89111111111"/>
+            <column name="login" value="admin"/>
+            <column name="password" value="$2a$04$pO.jO361zgv4ig7s4jC8aOEVnpDOYShTkukPoskbY2VpCUCFR/6ui"/>
+            <column name="age" valueNumeric="1"/>
+            <column name="email" value="admin@mail.ru"/>
+            <column name="modification_time" valueDate="now()"/>
+            <column name="is_enabled" valueBoolean="true"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="agerus" id="5">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="permissions"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="permissions">
+            <column name="user_id" type="BIGINT"/>
+            <column name="role_id" type="BIGINT"/>
+        </createTable>
+        <modifySql dbms="mysql">
+            <append value="DEFAULT CHARSET=utf8"/>
+        </modifySql>
+    </changeSet>
+
+    <changeSet id="6" author="agerus">
+        <insert tableName="permissions">
+            <column name="user_id" valueNumeric="1"/>
+            <column name="role_id" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="permissions">
+            <column name="user_id" valueNumeric="1"/>
+            <column name="role_id" valueNumeric="2"/>
+        </insert>
+
+        <insert tableName="permissions">
+            <column name="user_id" valueNumeric="1"/>
+            <column name="role_id" valueNumeric="3"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

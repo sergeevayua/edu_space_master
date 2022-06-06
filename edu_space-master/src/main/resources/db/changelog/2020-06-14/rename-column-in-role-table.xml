@@ -1,0 +1,57 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet author="agerus" id="2">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="professional"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="professional">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="link" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="icon" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modification_time" type="DATETIME"/>
+        </createTable>
+        <modifySql dbms="mysql">
+            <append value="DEFAULT CHARSET=utf8"/>
+        </modifySql>
+    </changeSet>
+
+    <changeSet author="agerus" id="3">
+        <insert tableName="professional">
+            <column name="id" valueNumeric="1"/>
+            <column name="name" value="IT_JOBS"/>
+            <column name="link" value="it-jobs"/>
+            <column name="icon" value="desktop_mac"/>
+            <column name="modification_time" valueDate="now()"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="agerus" id="4">
+        <insert tableName="professional">
+            <column name="id" valueNumeric="2"/>
+            <column name="name" value="SCHOOL_EXAMS"/>
+            <column name="link" value="school-exams"/>
+            <column name="icon" value="desktop_mac"/>
+            <column name="modification_time" valueDate="now()"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

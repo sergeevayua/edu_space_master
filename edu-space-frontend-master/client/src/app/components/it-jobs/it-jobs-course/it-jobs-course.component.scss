@@ -1,0 +1,25 @@
+@import 'src/scss/mixins';
+@import 'src/scss/variables';
+
+:host {
+
+  .tree-area {
+    padding: 20px;
+    display: -ms-grid;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 15% auto;
+
+    .example-tree-invisible {
+      display: none;
+    }
+
+    .example-tree ul,
+    .example-tree li {
+      margin-top: 0;
+      margin-bottom: 0;
+      list-style-type: none;
+    }
+  }
+
+}

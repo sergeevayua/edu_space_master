@@ -1,0 +1,28 @@
+<app-toolbar></app-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #sidenav [opened]="showSidenav$ | async"
+    [mode]="'over'"
+    [fixedInViewport]="mobileQuery.matches"
+    (closedStart)="closeSidenav()"
+    [style.marginTop.px]="mobileQuery.matches ? 60 : 0"
+    position="start">
+      <!-- category links -->
+  <nav *ngFor="let category of links">
+    <ul class="nav-links">
+      <li *ngFor="let component of category.items | appPermissionsPipe: permissions">
+        <a [routerLink]="['/', component?.link]" [routerLinkActive]="['active']"
+           [routerLinkActiveOptions]="{exact:true}" (click)="closeSidenav()">
+          <mat-icon>{{ component?.icon }}</mat-icon>
+          {{ component?.name | translate }}
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="version">
+    <span>Version 0.0.1</span>
+  </div>
+  </mat-sidenav>
+  <router-outlet *ngIf="!isIframe"></router-outlet>
+</mat-sidenav-container>
+

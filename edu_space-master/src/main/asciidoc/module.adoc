@@ -1,0 +1,57 @@
+==== Get one module by id
+===== Curl example
+include::{snippets}/module/get-by-id/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/module/get-by-id/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/module/get-by-id/path-parameters.adoc[]
+===== HTTP Response
+include::{snippets}/module/get-by-id/http-response.adoc[]
+===== Response fields
+include::{snippets}/module/get-by-id/response-fields.adoc[]
+
+==== Get all modules
+===== Curl example
+include::{snippets}/module/get-all/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/module/get-all/http-request.adoc[]
+===== Response fields
+include::{snippets}/module/get-all/response-fields.adoc[]
+===== HTTP Response
+include::{snippets}/module/get-all/http-response.adoc[]
+
+==== Create new module
+===== Curl example
+include::{snippets}/module/create/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/module/create/http-request.adoc[]
+===== Request fields
+include::{snippets}/module/create/request-fields.adoc[]
+===== HTTP Response
+include::{snippets}/module/create/http-response.adoc[]
+===== Response fields
+include::{snippets}/module/create/response-fields.adoc[]
+
+==== Update module
+===== Curl example
+include::{snippets}/module/update/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/module/update/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/module/update/path-parameters.adoc[]
+===== Request fields
+include::{snippets}/module/update/request-fields.adoc[]
+===== HTTP Response
+include::{snippets}/module/update/http-response.adoc[]
+===== Response fields
+include::{snippets}/module/update/response-fields.adoc[]
+
+==== Delete module
+===== Curl example
+include::{snippets}/module/remove/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/module/remove/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/module/remove/path-parameters.adoc[]
+===== HTTP Response
+include::{snippets}/module/remove/http-response.adoc[]

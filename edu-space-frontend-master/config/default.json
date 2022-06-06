@@ -1,0 +1,5 @@
+{
+  "host": "robioticnode.azurewebsites.net",
+  "port": 8080,
+  "public": "../public/dist/"
+}

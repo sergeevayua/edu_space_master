@@ -1,0 +1,33 @@
+{
+  "system": {
+    "applicationName": "EDU_SPACE",
+    "applicationUrl": "http://localhost:4200",
+    "version": "0.1.0",
+    "revision": "7002",
+    "appLocale": "ru"
+  },
+  "i18n": {
+    "defaultLanguage": {
+      "code": "ru",
+      "title": "Русский",
+      "icon": "Russia-Flag-icon.png"
+    },
+    "availableLanguages": [
+      {
+        "code": "ru",
+        "title": "Русский",
+        "icon": "Russia-Flag-icon.png"
+      },
+      {
+        "code": "en",
+        "title": "English",
+        "icon": "167794 - gb.png"
+      },
+      {
+        "code": "de",
+        "title": "Deutsch",
+        "icon": "167808 - de.png"
+      }
+    ]
+  }
+}

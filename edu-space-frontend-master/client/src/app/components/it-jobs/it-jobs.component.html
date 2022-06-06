@@ -1,0 +1,25 @@
+<div class="padding">
+  <mat-card>
+    <mat-tab-group [@.disabled]="true">
+      <div *ngFor="let courseGroup of coursesGroupArray">
+        <mat-tab [label]="courseGroup?.name">
+          <ng-template matTabContent>
+            <div class="div-courses-card">
+              <ng-container *ngFor="let course of courseGroup.course">
+                <mat-card (click)="router.navigate(['it-jobs', 'it-course', course.id])">
+                  <mat-card-header>
+                    <mat-card-title>{{ course.name }}</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <span>
+                    </span>
+                  </mat-card-content>
+                </mat-card>
+              </ng-container>
+            </div>
+          </ng-template>
+        </mat-tab>
+      </div>
+    </mat-tab-group>
+  </mat-card>
+</div>

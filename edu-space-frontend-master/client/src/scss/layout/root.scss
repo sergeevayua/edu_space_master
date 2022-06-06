@@ -1,0 +1,10 @@
+@import 'src/scss/variables';
+@import 'src/scss/mixins';
+
+app-root {
+  @include absolute(0);
+}
+
+app-main {
+  height: 100%;
+}

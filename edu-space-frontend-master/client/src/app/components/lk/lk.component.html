@@ -1,0 +1,182 @@
+<div class="padding">
+  <mat-card class="full-width">
+    <mat-card-content>
+      <div>
+        <div class="title-flex-status">
+          <div class="title">
+            <h3 class="nm">{{ 'График кол-ва курсов по группам' | translate }}</h3>
+          </div>
+        </div>
+        <div class="padding npb">
+          <highcharts-chart id="container"
+                            [Highcharts]="Highcharts"
+                            [options]="optFromInput"
+                            [(update)]="updateFromInput"
+                            [oneToOne]=true
+                            [callbackFunction]="chartCallback"
+                            [constructorType]="chartConstructor"
+          ></highcharts-chart>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<!--<div class="padding" style="justify-content: flex-start; width: 20%; height: 100%;">-->
+<!--  <a class="nav-link" (click)="logout()">Logout</a>-->
+<!--</div>-->
+<!--<div class="padding">-->
+<!--  <mat-card>-->
+<!--    <mat-card-content>-->
+<!--      <ng-container>-->
+<!--        <mat-vertical-stepper [linear]="false" #stepper>-->
+<!--          <mat-step [stepControl]="formStep1">-->
+<!--            <form [formGroup]="formStep1">-->
+<!--              <ng-template matStepLabel>Choose your destiny</ng-template>-->
+<!--              <mat-label>Your role:</mat-label>-->
+<!--              <mat-radio-group (change)="setRole()" required formControlName="destiny">-->
+<!--                <mat-radio-button class="example-margin" value="pupil">Ученик</mat-radio-button>-->
+<!--                <mat-radio-button class="example-margin" value="student">Студент</mat-radio-button>-->
+<!--              </mat-radio-group>-->
+<!--              <div>-->
+<!--                <button mat-button matStepperNext>Next</button>-->
+<!--              </div>-->
+<!--            </form>-->
+<!--          </mat-step>-->
+<!--          <mat-step [stepControl]="formStep2" *ngIf="isPupil && isActive">-->
+<!--            <mat-form-field [formGroup]="formStep2">-->
+<!--              <ng-template matStepLabel>Pupil</ng-template>-->
+<!--              <mat-label>Choose your class</mat-label>-->
+<!--              <mat-select formControlName="pupilClass" required>-->
+<!--                <mat-option value="1">1</mat-option>-->
+<!--                <mat-option value="2">2</mat-option>-->
+<!--                <mat-option value="3">3</mat-option>-->
+<!--                <mat-option value="4">4</mat-option>-->
+<!--                <mat-option value="5">5</mat-option>-->
+<!--                <mat-option value="6">6</mat-option>-->
+<!--                <mat-option value="7">7</mat-option>-->
+<!--                <mat-option value="8">8</mat-option>-->
+<!--                <mat-option value="9">9</mat-option>-->
+<!--                <mat-option value="10">10</mat-option>-->
+<!--                <mat-option value="11">11</mat-option>-->
+<!--              </mat-select>-->
+<!--            </mat-form-field>-->
+<!--            <mat-form-field class="example-margin" [formGroup]="formStep2">-->
+<!--              <mat-label>Choose your lessons</mat-label>-->
+<!--              <mat-select formControlName="pupilLesson" multiple required>-->
+<!--                <mat-option value="1">Математика</mat-option>-->
+<!--                <mat-option value="2">Физика</mat-option>-->
+<!--                <mat-option value="3">Инфа</mat-option>-->
+<!--              </mat-select>-->
+<!--            </mat-form-field>-->
+<!--            <div>-->
+<!--              <button mat-button matStepperPrevious>Back</button>-->
+<!--              <button mat-button (click)="submit()">Ok</button>-->
+<!--            </div>-->
+<!--          </mat-step>-->
+<!--          <mat-step [stepControl]="formStep3" *ngIf="!isPupil && isActive">-->
+<!--            <form [formGroup]="formStep3">-->
+<!--              <ng-template matStepLabel>Student</ng-template>-->
+<!--              <mat-label>Your role:</mat-label>-->
+<!--              <mat-step>-->
+<!--                123-->
+<!--              </mat-step>-->
+<!--              <div>-->
+<!--                <button mat-button matStepperPrevious>Back</button>-->
+<!--                <button mat-button (click)="submit()">Ok</button>-->
+<!--              </div>-->
+<!--            </form>-->
+<!--          </mat-step>-->
+<!--        </mat-vertical-stepper>-->
+<!--      </ng-container>-->
+<!--    </mat-card-content>-->
+<!--  </mat-card>-->
+<!--</div>-->
+<!--<div class="padding">-->
+<!--  <mat-card>-->
+<!--    <mat-card-content>-->
+<!--      <form [formGroup]="testForm">-->
+<!--      <ng-container *ngFor="let test of testArray">-->
+<!--        <div *ngFor="let exercise of test.exercises; let i = index">-->
+<!--          {{exercise | json}}-->
+<!--        </div>-->
+<!--      </ng-container>-->
+<!--      <mat-form-field>-->
+<!--        <input matInput formControlName="result"/>-->
+<!--      </mat-form-field>-->
+<!--      <button mat-button (click)="checkTestResult()">Check test result</button>-->
+<!--      </form>-->
+<!--    </mat-card-content>-->
+<!--  </mat-card>-->
+<!--</div>-->
+<!--<div class="padding">-->
+<!--  <mat-card>-->
+<!--    <mat-card-content>-->
+<!--      <form [formGroup]="subjectForm">-->
+<!--        <div>-->
+<!--          <mat-form-field>-->
+<!--            <input matInput formControlName="name"/>-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+<!--        <button mat-button (click)="createSubject()">Create subject</button>-->
+<!--      </form>-->
+<!--    </mat-card-content>-->
+<!--  </mat-card>-->
+<!--</div>-->
+<!--<div class="padding">-->
+<!--  <mat-card>-->
+<!--    <mat-card-content>-->
+<!--      <form [formGroup]="exerciseGroupForm">-->
+<!--        <div>-->
+<!--          <mat-form-field>-->
+<!--            <input matInput formControlName="name"/>-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <mat-form-field>-->
+<!--            <input matInput formControlName="classType"/>-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <mat-form-field>-->
+<!--            <input matInput formControlName="exerciseNumber"/>-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <mat-form-field>-->
+<!--            <input matInput formControlName="subjectId"/>-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+<!--        <button mat-button (click)="createExerciseGroup()">Create exercise group</button>-->
+<!--      </form>-->
+<!--    </mat-card-content>-->
+<!--  </mat-card>-->
+<!--</div>-->
+<!--<div class="padding">-->
+<!--  <mat-card>-->
+<!--    <mat-card-content>-->
+<!--      <form [formGroup]="exerciseForm">-->
+<!--        <div>-->
+<!--          <mat-form-field>-->
+<!--            <input matInput formControlName="name"/>-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <mat-form-field>-->
+<!--            <input matInput formControlName="description"/>-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <mat-form-field>-->
+<!--            <input matInput formControlName="result"/>-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <mat-form-field>-->
+<!--            <input matInput formControlName="groupId"/>-->
+<!--          </mat-form-field>-->
+<!--        </div>-->
+<!--        <button mat-button (click)="createExercise()">Create exercise</button>-->
+<!--      </form>-->
+<!--    </mat-card-content>-->
+<!--  </mat-card>-->
+<!--</div>-->

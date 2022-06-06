@@ -1,0 +1,30 @@
+<div class="main-page">
+  <span class="flex"></span>
+  <div class="padding">
+    <mat-card *ngIf="mode === 'login'">
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-content>
+        <form (ngSubmit)="login()" [formGroup]="loginForm">
+          <p>
+            <mat-form-field appearance="outline">
+              <input formControlName="login" matInput placeholder="Username" type="text">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <input formControlName="password" matInput placeholder="Password" type="password">
+            </mat-form-field>
+          </p>
+          <div class="button">
+            <button mat-button type="submit" [disabled]="loginForm.invalid">Login</button>
+          </div>
+          <div class="button">
+            <p class="small mt-4 text-center">Don't have an account yet? <a [routerLink]="'/registration'" (click)="mode = 'registration'">Sign
+              up</a></p>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

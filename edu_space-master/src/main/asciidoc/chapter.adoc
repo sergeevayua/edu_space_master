@@ -1,0 +1,57 @@
+==== Get one chapter by id
+===== Curl example
+include::{snippets}/chapter/get-by-id/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/chapter/get-by-id/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/chapter/get-by-id/path-parameters.adoc[]
+===== HTTP Response
+include::{snippets}/chapter/get-by-id/http-response.adoc[]
+===== Response fields
+include::{snippets}/chapter/get-by-id/response-fields.adoc[]
+
+==== Get all chapters
+===== Curl example
+include::{snippets}/chapter/get-all/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/chapter/get-all/http-request.adoc[]
+===== Response fields
+include::{snippets}/chapter/get-all/response-fields.adoc[]
+===== HTTP Response
+include::{snippets}/chapter/get-all/http-response.adoc[]
+
+==== Create new chapter
+===== Curl example
+include::{snippets}/chapter/create/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/chapter/create/http-request.adoc[]
+===== Request fields
+include::{snippets}/chapter/create/request-fields.adoc[]
+===== HTTP Response
+include::{snippets}/chapter/create/http-response.adoc[]
+===== Response fields
+include::{snippets}/chapter/create/response-fields.adoc[]
+
+==== Update chapter
+===== Curl example
+include::{snippets}/chapter/update/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/chapter/update/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/chapter/update/path-parameters.adoc[]
+===== Request fields
+include::{snippets}/chapter/update/request-fields.adoc[]
+===== HTTP Response
+include::{snippets}/chapter/update/http-response.adoc[]
+===== Response fields
+include::{snippets}/chapter/update/response-fields.adoc[]
+
+==== Delete chapter
+===== Curl example
+include::{snippets}/chapter/remove/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/chapter/remove/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/chapter/remove/path-parameters.adoc[]
+===== HTTP Response
+include::{snippets}/chapter/remove/http-response.adoc[]

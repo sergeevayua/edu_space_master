@@ -1,0 +1,366 @@
+/**
+ * Positioning
+ */
+@function _unpack($shorthand) {
+  @if length($shorthand) == 1 {
+    @return nth($shorthand, 1) nth($shorthand, 1) nth($shorthand, 1) nth($shorthand, 1);
+  }
+  @else if length($shorthand) == 2 {
+    @return nth($shorthand, 1) nth($shorthand, 2) nth($shorthand, 1) nth($shorthand, 2);
+  }
+  @else if length($shorthand) == 3 {
+    @return nth($shorthand, 1) nth($shorthand, 2) nth($shorthand, 3) nth($shorthand, 2);
+  }
+  @else {
+    @return $shorthand;
+  }
+}
+
+@function _is-length($value) {
+  /* stylelint-disable-next-line */
+  @return type-of($value) != 'null' and (str-slice($value + '', 1, 4) == 'calc'
+  or index(auto inherit initial 0, $value)
+  or (type-of($value) == 'number' and not(unitless($value))));
+}
+
+@mixin position($position: relative, $coordinates: null) {
+  @if type-of($position) == list {
+    $coordinates: $position;
+    $position: relative;
+  }
+
+  $coordinates: _unpack($coordinates);
+
+  $offsets: (
+          top: nth($coordinates, 1),
+          right: nth($coordinates, 2),
+          bottom: nth($coordinates, 3),
+          left: nth($coordinates, 4)
+  );
+
+  position: $position;
+
+  @each $offset, $value in $offsets {
+    @if _is-length($value) {
+      #{$offset}: $value;
+    }
+  }
+}
+
+@mixin absolute($coordinates) {
+  @include position(absolute, $coordinates);
+}
+
+@mixin fixed($coordinates) {
+  @include position(fixed, $coordinates);
+}
+
+@mixin relative($coordinates) {
+  @include position(relative, $coordinates);
+}
+
+/**
+ * Depth
+ */
+@function z($name) {
+  @if index($z-indexes, $name) {
+    @return (length($z-indexes) - index($z-indexes, $name)) + 1;
+  }
+  @else {
+    @warn 'There is no item "#{$name}" in this list; choose one of: #{$z-indexes}';
+    @return null;
+  }
+}
+
+/**
+ * Sizing
+ */
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+/**
+ * Margin & Padding
+ */
+@mixin push($spacing: $space) {
+  margin: $spacing;
+}
+
+@mixin push--top($spacing: $space) {
+  margin-top: $spacing;
+}
+
+@mixin push--right($spacing: $space) {
+  margin-right: $spacing;
+}
+
+@mixin push--bottom($spacing: $space) {
+  margin-bottom: $spacing;
+}
+
+@mixin push--left($spacing: $space) {
+  margin-left: $spacing;
+}
+
+@mixin push--ends($spacing: $space) {
+  margin: {
+    top: $spacing;
+    bottom: $spacing;
+  }
+}
+
+@mixin push--sides($spacing: $space) {
+  margin: {
+    right: $spacing;
+    left: $spacing;
+  }
+}
+
+@mixin push--auto {
+  margin: {
+    right: auto;
+    left: auto;
+  }
+}
+
+@mixin offset--sides($spacing: $space) {
+  margin: {
+    right: -$spacing;
+    left: -$spacing;
+  }
+}
+
+%flush {
+  margin: 0;
+}
+
+%flush--top {
+  margin-top: 0;
+}
+
+%flush--right {
+  margin-right: 0;
+}
+
+%flush--bottom {
+  margin-bottom: 0;
+}
+
+%flush--left {
+  margin-left: 0;
+}
+
+%flush--ends {
+  margin: {
+    top: 0;
+    bottom: 0;
+  }
+}
+
+%flush--sides {
+  margin: {
+    right: 0;
+    left: 0;
+  }
+}
+
+@mixin soft($spacing: $space) {
+  padding: $spacing;
+}
+
+@mixin soft--top($spacing: $space) {
+  padding-top: $spacing;
+}
+
+@mixin soft--right($spacing: $space) {
+  padding-right: $spacing;
+}
+
+@mixin soft--bottom($spacing: $space) {
+  padding-bottom: $spacing;
+}
+
+@mixin soft--left($spacing: $space) {
+  padding-left: $spacing;
+}
+
+@mixin soft--ends($spacing: $space) {
+  padding: {
+    top: $spacing;
+    bottom: $spacing;
+  }
+}
+
+@mixin soft--sides($spacing: $space) {
+  padding: {
+    right: $spacing;
+    left: $spacing;
+  }
+}
+
+%hard {
+  padding: 0;
+}
+
+%hard--top {
+  padding-top: 0;
+}
+
+%hard--right {
+  padding-right: 0;
+}
+
+%hard--bottom {
+  padding-bottom: 0;
+}
+
+%hard--left {
+  padding-left: 0;
+}
+
+%hard--ends {
+  padding: {
+    top: 0;
+    bottom: 0;
+  }
+}
+
+%hard--sides {
+  padding: {
+    right: 0;
+    left: 0;
+  }
+}
+
+/**
+ * Typography
+ */
+@mixin font($font, $color: false, $tt: false, $td: false, $ls: false) {
+  @extend %antialiased;
+
+  font: $font;
+
+  @if $color {
+    color: $color;
+  }
+
+  @if $tt {
+    text-transform: $tt;
+  }
+
+  @if $td {
+    text-decoration: $td;
+  }
+
+  @if $ls {
+    letter-spacing: $ls;
+  }
+}
+
+@mixin truncate($truncation-boundary: false) {
+  @if $truncation-boundary {
+    max-width: $truncation-boundary;
+  }
+
+  @extend %truncated;
+}
+
+/**
+ * Colors
+ */
+@function c($color, $value: base) {
+  @if map-has-key($ui-colors, $color) {
+    $color: map-get($ui-colors, $color);
+    $value: map-get($color, $value);
+
+    @return $value;
+  }
+  @else {
+    @warn 'There is no color "#{$color}" in this list; choose one of: #{$ui-colors}';
+  }
+}
+
+// Cross-browsers opacity: @include opacity(0.5);
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+// Transitions for all: @include transition($transition);
+$transition: all .3s ease;
+@mixin transition($value) {
+  -webkit-transition: $value;
+  -moz-transition: $value;
+  -ms-transition: $value;
+  -o-transition: $value;
+  transition: $value;
+}
+
+// Input placeholder animation: @include placeholder { color: #000 }
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+// responsitive layout
+$small: 320px;
+$large: 1024px;
+
+@mixin mq($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $small) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $small + 1) and (max-width: $large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $large) { @content; }
+  }
+}
+
+$breakpoints: (
+  "phone":                301px,
+  "phone-small":          330px,
+  "phone-medium":         350px,
+  "phone-wide":           481px,
+  "phablet":              561px,
+  "tablet-small":         641px,
+  "tablet-low":           700px,
+  "tablet":               769px,
+  "tablet-medium-low":    800px,
+  "tablet-medium-high":   880px,
+  "tablet-medium-medium": 900px,
+  "tablet-medium":        971px,
+  "tablet-wide":          1025px,
+  "desktop-small":        1100px,
+  "desktop-medium":       1200px,
+  "desktop-medium-high":  1280px,
+  "desktop":              1367px,
+  "desktop-wide":         1441px,
+  "ultra-wide":           1500px,
+  "ultra-mega-wide":      1550px
+);
+@mixin respond-to($width, $type: min) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+    @if $type == max {
+      $width: $width - 1px;
+    }
+    @media only screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
+

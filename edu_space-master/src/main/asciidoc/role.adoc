@@ -1,0 +1,21 @@
+==== Get one role by id
+===== Curl example
+include::{snippets}/role/get-by-id/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/role/get-by-id/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/role/get-by-id/path-parameters.adoc[]
+===== HTTP Response
+include::{snippets}/role/get-by-id/http-response.adoc[]
+===== Response fields
+include::{snippets}/role/get-by-id/response-fields.adoc[]
+
+==== Get all roles
+===== Curl example
+include::{snippets}/role/get-all/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/role/get-all/http-request.adoc[]
+===== Response fields
+include::{snippets}/role/get-all/response-fields.adoc[]
+===== HTTP Response
+include::{snippets}/role/get-all/http-response.adoc[]

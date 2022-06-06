@@ -1,0 +1,42 @@
+<mat-toolbar>
+  <button (click)="toggle()" *ngIf="mode === 'authorized'" mat-icon-button type="button">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div [ngClass]="(this.showSideNav) ? 'expanded':'collapsed'" [routerLink]="['']" class="logo">
+    <span>Edu space</span>
+  </div>
+  <span class="flex"></span>
+  <!--userinfo-->
+  <app-lang-switcher *ngIf="mode === 'authorized'" class="ml lang-switcher"></app-lang-switcher>
+  <div class="user-menu-default ml">
+    <button mat-button class="user-menu-item" type="button"
+            (click)="redirectTo('login')"
+            *ngIf="mode === 'registration'">
+      <span>Login</span>
+    </button>
+    <button mat-button class="user-menu-item" type="button" *ngIf="mode === 'login'"
+            (click)="redirectTo('registration')">
+      <span>Register</span>
+    </button>
+    <button mat-button class="user-menu-item" type="button" *ngIf="mode === 'authorized'">
+      <mat-icon>person</mat-icon>
+      <span *ngIf="authService?.userProfile$ | async as profile">{{ profile | truncate : 20 }}</span>
+    </button>
+    <button mat-button class="user-menu-item" (click)="logout()" type="button" *ngIf="mode === 'authorized'">
+      <mat-icon>lock_open</mat-icon>
+      <span>{{ 'LOGOUT' | translate }}</span>
+    </button>
+  </div>
+  <div class="user-menu-small ml">
+    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>person</mat-icon></button>
+    <mat-menu #menu="matMenu">
+      <app-lang-switcher *ngIf="mode === 'authorized'" class="mat-menu-item"></app-lang-switcher>
+      <button mat-button class="mat-menu-item" (click)="logout()">
+        <mat-icon>lock_open</mat-icon>
+        <span>{{ 'LOGOUT' | translate }}</span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
+
+

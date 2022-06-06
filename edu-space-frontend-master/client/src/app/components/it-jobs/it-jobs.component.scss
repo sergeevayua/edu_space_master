@@ -1,0 +1,14 @@
+@import 'src/scss/mixins';
+@import 'src/scss/variables';
+
+:host {
+
+  .div-courses-card {
+    padding: 20px;
+    display: -ms-grid;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+  }
+
+}

@@ -1,0 +1,336 @@
+<mat-tab-group (selectedTabChange)="changeTab($event)">
+  <ng-container *ngFor="let prof of professions; index as i;">
+    <mat-tab [label]="prof.label | translate">
+      <button mat-icon-button
+              *ngIf="currentTemplate !== ''"
+              (click)="showTemplate()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <div class="div-content-cards">
+        <ng-container [ngSwitch]="currentTemplate">
+          <ng-container *ngSwitchCase="'courseGroups'">
+            <ng-container *ngTemplateOutlet="coursesTemplate"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="'courses'">
+            <ng-container *ngTemplateOutlet="modulesTemplate"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="'modules'">
+            <ng-container *ngTemplateOutlet="chaptersTemplate"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="'chapters'">
+            <ng-container *ngTemplateOutlet="exercisesTemplate"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            <ng-container *ngTemplateOutlet="courseGroupsTemplate"></ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+    </mat-tab>
+  </ng-container>
+</mat-tab-group>
+<ng-template #courseGroupsTemplate>
+  <ng-container *ngFor="let courseG of courseGroups; index as cgi;">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <span>
+            {{ courseG.label | translate }}
+          </span>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <button mat-stroked-button
+                *ngIf="checkPermission('SUPERADMIN')"
+                class="mb"
+                (click)="activeArray[cgi] = !activeArray[cgi];">
+          <mat-icon>edit</mat-icon>
+          <span>{{ 'EDIT' | translate }}</span>
+        </button><br/>
+        <button mat-stroked-button
+                class="mb"
+                (click)="showTemplate('courseGroups', courseG)">
+          <mat-icon>arrow_forward</mat-icon>
+          <span>{{ 'GO_TO_COURSES' | translate }}</span>
+        </button>
+        <form [formGroup]="formCourseGroup"
+              *ngIf="activeArray[cgi]"
+              (ngSubmit)="editCourseGroup(courseG.value, cgi)">
+          <div>
+            <mat-form-field floatLabel="always">
+              <mat-label>{{ 'EDIT_COURSE_GROUP' | translate }}</mat-label>
+              <input matInput formControlName="name" [value]="courseG.label" placeholder="Backend" required/>
+            </mat-form-field>
+          </div>
+          <button mat-stroked-button type="submit">{{ 'SAVE' | translate }}</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <mat-card *ngIf="checkPermission('SUPERADMIN')">
+    <mat-card-content>
+      <form [formGroup]="formCourseGroup"
+            (ngSubmit)="saveCourseGroup()">
+        <div>
+          <mat-form-field floatLabel="always">
+            <mat-label>{{ 'CREATE_COURSE_GROUP' | translate }}</mat-label>
+            <input matInput formControlName="name" placeholder="Backend" required/>
+          </mat-form-field>
+        </div>
+        <button mat-stroked-button type="submit">{{ 'SAVE' | translate }}</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+<ng-template #coursesTemplate>
+  <ng-container *ngFor="let course of courses; index as ci;">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <span>
+            {{ course.label | translate }}
+          </span>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <button mat-stroked-button
+                class="mb"
+                (click)="activeArray[ci] = !activeArray[ci];">
+          <mat-icon>edit</mat-icon>
+          <span>{{ 'EDIT' | translate }}</span>
+        </button><br/>
+        <button mat-stroked-button
+                class="mb"
+                (click)="showTemplate('courses', course)">
+          <mat-icon>arrow_forward</mat-icon>
+          <span>{{ 'GO_TO_MODULES' | translate }}</span>
+        </button>
+        <form [formGroup]="formCourse"
+              *ngIf="activeArray[ci]"
+              (ngSubmit)="editCourse(course.value, ci)">
+          <div>
+            <mat-form-field floatLabel="always">
+              <mat-label>{{ 'EDIT_COURSE' | translate }}</mat-label>
+              <input matInput
+                     formControlName="name"
+                     [value]="course.label"
+                     placeholder="Java"
+                     required/>
+            </mat-form-field>
+          </div>
+          <button mat-stroked-button type="submit">{{ 'SAVE' | translate }}</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="formCourse"
+            (ngSubmit)="saveCourse()">
+        <div>
+          <mat-form-field floatLabel="always">
+            <mat-label>{{ 'CREATE_COURSE' | translate }}</mat-label>
+            <input matInput formControlName="name" placeholder="Java" required/>
+          </mat-form-field>
+        </div>
+        <button mat-stroked-button
+                type="submit">{{ 'SAVE' | translate }}</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+<ng-template #modulesTemplate>
+  <ng-container *ngFor="let module of modules; index as mi;">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <span>
+            {{ module.label | translate }}
+          </span>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <button mat-stroked-button
+                class="mb"
+                (click)="activeArray[mi] = !activeArray[mi];">
+          <mat-icon>edit</mat-icon>
+          <span>{{ 'EDIT' | translate }}</span>
+        </button><br/>
+        <button mat-stroked-button
+                class="mb"
+                (click)="showTemplate('modules', module)">
+          <mat-icon>arrow_forward</mat-icon>
+          <span>{{ 'GO_TO_CHAPTERS' | translate }}</span>
+        </button>
+        <form [formGroup]="formModule"
+              *ngIf="activeArray[mi]"
+              (ngSubmit)="editModule(module.value, mi)">
+          <div>
+            <mat-form-field floatLabel="always">
+              <mat-label>{{ 'EDIT_MODULE' | translate }}</mat-label>
+              <input matInput
+                     formControlName="name"
+                     [value]="module.label"
+                     placeholder="Java"
+                     required/>
+            </mat-form-field>
+          </div>
+          <button mat-stroked-button type="submit">{{ 'SAVE' | translate }}</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="formModule"
+            (ngSubmit)="saveModule()">
+        <div>
+          <mat-form-field floatLabel="always">
+            <mat-label>{{ 'CREATE_MODULE' | translate }}</mat-label>
+            <input matInput formControlName="name" placeholder="Java" required/>
+          </mat-form-field>
+        </div>
+        <button mat-stroked-button
+                type="submit">{{ 'SAVE' | translate }}</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+<ng-template #chaptersTemplate>
+  <ng-container *ngFor="let chapter of chapters; index as chi;">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <span>
+            {{ chapter.label | translate }}
+          </span>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <button mat-stroked-button
+                class="mb"
+                (click)="activeArray[chi] = !activeArray[chi];">
+          <mat-icon>edit</mat-icon>
+          <span>{{ 'EDIT' | translate }}</span>
+        </button><br/>
+        <button mat-stroked-button
+                class="mb"
+                (click)="showTemplate('chapters', chapter)">
+          <mat-icon>arrow_forward</mat-icon>
+          <span>{{ 'GO_TO_EXERCISES' | translate }}</span>
+        </button>
+        <form [formGroup]="formChapter"
+              *ngIf="activeArray[chi]"
+              (ngSubmit)="editChapter(chapter.value, chi)">
+          <div>
+            <mat-form-field floatLabel="always">
+              <mat-label>{{ 'EDIT_CHAPTER' | translate }}</mat-label>
+              <input matInput
+                     formControlName="name"
+                     [value]="chapter.label"
+                     placeholder="Java"
+                     required/>
+            </mat-form-field>
+          </div>
+          <button mat-stroked-button type="submit">{{ 'SAVE' | translate }}</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="formChapter"
+            (ngSubmit)="saveChapter()">
+        <div>
+          <mat-form-field floatLabel="always">
+            <mat-label>{{ 'CREATE_CHAPTER' | translate }}</mat-label>
+            <input matInput formControlName="name" placeholder="Java" required/>
+          </mat-form-field>
+        </div>
+        <button mat-stroked-button
+                type="submit">{{ 'SAVE' | translate }}</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+<ng-template #exercisesTemplate>
+  <ng-container *ngFor="let exercise of exercises; index as ei;">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <span>
+            {{ exercise.label | translate }}
+          </span>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <button mat-stroked-button
+                class="mb"
+                (click)="activeArray[ei] = !activeArray[ei];">
+          <mat-icon>edit</mat-icon>
+          <span>{{ 'EDIT' | translate }}</span>
+        </button>
+        <form [formGroup]="formExercise"
+              *ngIf="activeArray[ei]"
+              (ngSubmit)="editExercise(exercise.value, ei)">
+          <div>
+            <mat-form-field floatLabel="always">
+              <mat-label>{{ 'EDIT_CHAPTER' | translate }}</mat-label>
+              <input matInput
+                     formControlName="name"
+                     [value]="exercise.label"
+                     placeholder="Java"
+                     required/>
+            </mat-form-field>
+          </div>
+          <button mat-stroked-button type="submit">{{ 'SAVE' | translate }}</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="formExercise"
+            (ngSubmit)="saveExercise()">
+        <div>
+          <mat-form-field floatLabel="always">
+            <mat-label>{{ 'CREATE_EXERCISE' | translate }}</mat-label>
+            <input matInput formControlName="name" placeholder="Java" required/>
+          </mat-form-field>
+        </div>
+        <button mat-stroked-button
+                type="submit">{{ 'SAVE' | translate }}</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+<!--<div>-->
+<!--  {{ 'CREATE_EXERCISE' | translate }}-->
+<!--</div>-->
+<!--<div>-->
+<!--  <form [formGroup]="formExercise" (ngSubmit)="saveExercise()">-->
+<!--    <div>-->
+<!--      <mat-form-field>-->
+<!--        <mat-label>{{ 'CHOOSE_CHAPTER' | translate }}</mat-label>-->
+<!--        <mat-select [formControl]="chapterControl" required>-->
+<!--          <mat-option>&#45;&#45;</mat-option>-->
+<!--          <mat-option *ngFor="let item of chapters" [value]="item.value">-->
+<!--            {{ item.label | translate }}-->
+<!--          </mat-option>-->
+<!--        </mat-select>-->
+<!--      </mat-form-field>-->
+<!--      <mat-form-field>-->
+<!--        <input matInput formControlName="name" placeholder="Написать код" required/>-->
+<!--      </mat-form-field>-->
+<!--      <mat-form-field>-->
+<!--        <input matInput formControlName="numeration" placeholder="1" required/>-->
+<!--      </mat-form-field>-->
+<!--      <mat-form-field>-->
+<!--        <input matInput formControlName="description" placeholder="Напишите код по заданию" required/>-->
+<!--      </mat-form-field>-->
+<!--      <mat-form-field>-->
+<!--        <input matInput formControlName="content" placeholder="Вывод в консоль: Hello, World!" required/>-->
+<!--      </mat-form-field>-->
+<!--    </div>-->
+<!--    <button mat-button type="submit">{{ 'SAVE' | translate }}</button>-->
+<!--  </form>-->
+<!--</div>-->

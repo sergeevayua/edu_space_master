@@ -1,0 +1,43 @@
+<div class="main-page">
+  <span class="flex"></span>
+  <div class="padding">
+    <mat-card *ngIf="selectedMode === 'registration'">
+      <mat-card-title>Registration</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="registrationForm">
+          <div class="names">
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>E-mail</mat-label>
+                <input matInput placeholder="E-mail" formControlName="login" type="email">
+                <mat-error *ngIf="registrationForm.controls.login.hasError('pattern')">
+                  E-mail is not valid
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input formControlName="password" matInput placeholder="Password"
+                       type="password">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="button">
+            <button mat-button type="button" (click)="registration()">
+              <span>
+                Sign in
+              </span>
+            </button>
+          </div>
+          <div class="button">
+            <p class="small mt-4 text-center">Already have an account?
+              <a [routerLink]="'/login'">Login</a>
+            </p>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

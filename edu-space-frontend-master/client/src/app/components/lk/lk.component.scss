@@ -1,0 +1,9 @@
+::ng-deep .highcharts-container {
+  width: 100% !important
+}
+
+::ng-deep highcharts-chart {
+  width: 100% !important;
+  height: 354px !important;
+  display: block;
+}

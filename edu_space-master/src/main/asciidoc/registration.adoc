@@ -1,0 +1,11 @@
+==== Registration
+===== Curl example
+include::{snippets}/registration/create/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/registration/create/http-request.adoc[]
+===== Request fields
+include::{snippets}/registration/create/request-fields.adoc[]
+===== HTTP Response
+include::{snippets}/registration/create/http-response.adoc[]
+===== Response fields
+include::{snippets}/registration/create/response-fields.adoc[]

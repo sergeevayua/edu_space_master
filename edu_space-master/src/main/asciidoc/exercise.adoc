@@ -1,0 +1,57 @@
+==== Get one exercise by id
+===== Curl example
+include::{snippets}/exercise/get-by-id/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/exercise/get-by-id/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/exercise/get-by-id/path-parameters.adoc[]
+===== HTTP Response
+include::{snippets}/exercise/get-by-id/http-response.adoc[]
+===== Response fields
+include::{snippets}/exercise/get-by-id/response-fields.adoc[]
+
+==== Get all exercises
+===== Curl example
+include::{snippets}/exercise/get-all/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/exercise/get-all/http-request.adoc[]
+===== Response fields
+include::{snippets}/exercise/get-all/response-fields.adoc[]
+===== HTTP Response
+include::{snippets}/exercise/get-all/http-response.adoc[]
+
+==== Create new exercise
+===== Curl example
+include::{snippets}/exercise/create/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/exercise/create/http-request.adoc[]
+===== Request fields
+include::{snippets}/exercise/create/request-fields.adoc[]
+===== HTTP Response
+include::{snippets}/exercise/create/http-response.adoc[]
+===== Response fields
+include::{snippets}/exercise/create/response-fields.adoc[]
+
+==== Update exercise
+===== Curl example
+include::{snippets}/exercise/update/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/exercise/update/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/exercise/update/path-parameters.adoc[]
+===== Request fields
+include::{snippets}/exercise/update/request-fields.adoc[]
+===== HTTP Response
+include::{snippets}/exercise/update/http-response.adoc[]
+===== Response fields
+include::{snippets}/exercise/update/response-fields.adoc[]
+
+==== Delete exercise
+===== Curl example
+include::{snippets}/exercise/remove/curl-request.adoc[]
+===== HTTP Request
+include::{snippets}/exercise/remove/http-request.adoc[]
+===== HTTP Path parameters
+include::{snippets}/exercise/remove/path-parameters.adoc[]
+===== HTTP Response
+include::{snippets}/exercise/remove/http-response.adoc[]

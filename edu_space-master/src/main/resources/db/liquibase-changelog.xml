@@ -1,0 +1,11 @@
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <includeAll path="changelog/2020-02-29" relativeToChangelogFile="true"/>
+    <includeAll path="changelog/2020-06-25" relativeToChangelogFile="true"/>
+    <includeAll path="changelog/2020-06-14" relativeToChangelogFile="true"/>
+    <includeAll path="changelog/2021-05-13" relativeToChangelogFile="true"/>
+</databaseChangeLog>

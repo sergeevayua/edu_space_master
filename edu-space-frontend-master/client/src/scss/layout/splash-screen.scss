@@ -1,0 +1,24 @@
+@import 'src/scss/variables';
+@import 'src/scss/mixins';
+
+.splash-screen {
+  @include absolute(0);
+
+  z-index: z('splash-screen');
+  display: block;
+
+  .container {
+    @include absolute(50% null null);
+
+    display: block;
+    width: 100%;
+    transform: translateY(-50%);
+  }
+
+  .container div {
+    @include push(0 auto);
+    @include font(#{$h1}/#{rem(9.6)} $font--preferred, c(white));
+
+    text-align: center;
+  }
+}
